@@ -17,7 +17,7 @@ export default function Layout({ children, metaTitle, metaDescription }) {
    </Head>
    <Header />
    <Users />
-   {children}
+   {children }
    <Footer />
   </div>
  );
