@@ -5,6 +5,7 @@ export default function Content() {
     <>
       <Layout>
         <p>Content</p>
+        
       </Layout>
     </>
   )
