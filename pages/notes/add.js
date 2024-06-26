@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import {
  Grid,
  GridItem,
- Card
+ Card,
  Heading,
  Text,
  Button,
