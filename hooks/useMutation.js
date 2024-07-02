@@ -10,7 +10,7 @@ export const useMutation = () => {
 const mutate = useCallback(
  async ({ url ="", method ="POST", payload = {} } = {}) => {
   try {
-   const response = awaitfetch(url, {
+   const response = await fetch(url, {
     method,
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
