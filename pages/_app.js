@@ -1,5 +1,14 @@
-import "@/styles/globals.css";
+import { ChakraProvider } from "@chakra-ui/react";
+import { userContextProvider } from "@/contex/UserContext"
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+function MyApp({ Component, pageProps }) {
+  return (
+    <ChakraProvider>
+      <UserContextProvider>
+        <Component {...pageProps} />
+      </UserContextProvider>
+    </ChakraProvider>
+  );
 }
+
+export default MyApp;

@@ -4,21 +4,37 @@ import {
   Input,
   Button,
   Flex,
-  Stack
+  Stack,
+  useToast
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useMutation } from "@/hooks/useMutation";
+import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 
 export default function Login (){
+  const  toast  = useToast()
   const { mutate } = useMutation()
-const [payload, setPayload] = useState({
-  email:"",
-  password:"",
-});
+  const router = useRouter()
+  const [payload, setPayload] = useState({
+    email:"",
+    password:"",
+  });
 
 const HandleSubmit = async () => {
-  const response = await mutate({url : "https://service.pace-unv.cloud/api/login", payload})
-  console.log(`response => `,response)
+  const response = await mutate({url : "https://service.pace-unv.cloud/api/login", payload});
+  if(!response?.success){
+    toast({
+      title: 'Login Gagal',
+      description: "data tidak sesuai",
+      status: 'success',
+      duration: 2000,
+      isClosable: true,
+    })
+  }else{
+    Cookies.set('user_token', response?.data?.token, {expires : new Date( response?.data?.expires_at), path :"/", })
+    router.push("/")
+  }
 }
   return(
     <>
